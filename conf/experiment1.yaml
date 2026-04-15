@@ -28,6 +28,8 @@ design:
     texts:
         # : [text, x, y, w, h]
         # text has maximally two lines
+        # x, y: origin point is on the SW corner of the screen
+        # w, h: value refers the proportion of the real width and height
         0x00: ["Cue1", 0.1, 0.3, 0.15, 0.1]
         0x01: ["提示2", 0.3, 0.3, 0.15, 0.1]
         0x02: ["提示3\n第二行", 0.6, 0.3, 0.15, 0.1]
