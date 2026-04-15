@@ -1,0 +1,48 @@
+project:
+    name: SSVEP display
+    version: "0.1"
+
+experiment:
+    name: experiment1
+    author: zcc
+    version: "1.0"
+
+design:
+    trial:
+        interval: 5 # seconds
+        cue: 1 # seconds
+        blinking: 2.6 # seconds
+
+    color:
+        textBackground: "#000000ff"
+        textColor: "#ffffffff"
+        cueStroke: "#ff0000ff"
+
+    cueSequence:
+        sequence:
+            - 0x00
+            - 0x02
+            - 0x01
+            - 0x02
+
+    texts:
+        # : [text, x, y, w, h]
+        # text has maximally two lines
+        0x00: ["Cue1", 0.1, 0.3, 0.15, 0.1]
+        0x01: ["提示2", 0.3, 0.3, 0.15, 0.1]
+        0x02: ["提示3\n第二行", 0.6, 0.3, 0.15, 0.1]
+
+    blocks:
+        # : [freq, x, y, w, h]
+        0x00: [20.0, 0.1, 0.7, 0.15, 0.1]
+        0x01: [23.0, 0.3, 0.7, 0.15, 0.1]
+        0x02: [26.0, 0.5, 0.7, 0.15, 0.1]
+        0x03: [29.0, 0.7, 0.7, 0.15, 0.1]
+        0x04: [31.0, 0.1, 0.85, 0.1, 0.1]
+        0x05: [33.0, 0.3, 0.85, 0.1, 0.1]
+        0x06: [35.0, 0.5, 0.85, 0.1, 0.1]
+        0x07: [37.0, 0.7, 0.85, 0.1, 0.1]
+        0x08: [32.0, 0.1, 0.55, 0.1, 0.1]
+        0x09: [34.0, 0.3, 0.55, 0.1, 0.1]
+        0x0A: [36.0, 0.5, 0.55, 0.1, 0.1]
+        0x0B: [38.0, 0.7, 0.55, 0.1, 0.1]
