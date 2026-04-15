@@ -121,6 +121,10 @@ class GLFWWindow(CursorPosition):
             raise RuntimeError('Failed initialize GLFW')
 
         # 获取主显示器
+        monitors = glfw.get_monitors()
+
+        logger.info(f'Available monitors: {len(monitors)}, {monitors=}')
+
         primary_monitor = glfw.get_primary_monitor()
 
         # 获取视频模式(包含分辨率信息)

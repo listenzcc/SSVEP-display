@@ -52,7 +52,7 @@ It also changes the text color.
 
 # %%
 conf = OmegaConf.load('./conf/demo1.yaml')
-print(conf)
+logger.info(f'Using {conf=}')
 
 # %% ---- 2026-04-10 ------------------------
 # Function and class
@@ -175,8 +175,8 @@ def main_render(freq=0.2):
         c = (math.sin(t*2*math.pi*f) + 1) * 0.5
         wnd.draw_rect(x, y, w, h, (c, c, c, 0.8))
         text = f'{f=:0.2f} Hz'
-        wnd.draw_text(text, x+w/2, y+h/2, scale=1,
-                      anchor=TextAnchor.C, color=PROMPT_COLOR)
+        wnd.draw_text(text, x+w/2, y+h, scale=1,
+                      anchor=TextAnchor.B, color=PROMPT_COLOR)
 
     # Draw the welcome message
     x = 1.0
