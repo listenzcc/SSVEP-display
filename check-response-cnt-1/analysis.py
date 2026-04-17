@@ -42,7 +42,7 @@ print(raws)
 # Play ground
 
 # %%
-ch_names = ['O1', 'O2', 'Oz']
+ch_names = ['Oz', 'POz', 'Pz']
 freqs = np.arange(20, 41, 0.5)  # 20-40 Hz，步长 0.5 Hz
 
 for path, raw in zip(files, raws):
@@ -62,7 +62,9 @@ for path, raw in zip(files, raws):
     event_id = {'1': 1}
     print(events, event_id)
 
-    epochs = mne.Epochs(raw, events, event_id, tmin=-0.5, tmax=3, detrend=1)
+    epochs = mne.Epochs(raw, events, event_id, tmin=-0.5, tmax=3, detrend=0)
+    if name.startswith('31'):
+        epochs = epochs[1:]
     epochs.load_data()
     epochs.filter(l_freq=1, h_freq=40)  # 低通滤波 50Hz
     print(epochs)
@@ -92,7 +94,7 @@ for path, raw in zip(files, raws):
             yf = yf[10:n//2]
             yf = yf[xf < freqs[-1]]
             xf = xf[xf < freqs[-1]]
-            ax.plot(xf, yf, linewidth=1, color='#000000a0')
+            ax.plot(xf, yf, linewidth=1, color='gray')
             yf_stack.append(yf)
 
         yf = np.mean(yf_stack, axis=0)
@@ -134,9 +136,11 @@ for path, raw in zip(files, raws):
 
 # %% ---- 2026-04-16 ------------------------
 # Pending
-
+raw.ch_names
 
 # %% ---- 2026-04-16 ------------------------
 # Pending
+fig = mne.viz.plot_sensors(raw.info, show_names=True)
+plt.show()
 
 # %%
