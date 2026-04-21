@@ -18,6 +18,7 @@ Functions:
 
 # %% ---- 2026-04-15 ------------------------
 # Requirements and constants
+import plotly.express as px
 import numpy as np
 import matplotlib.pyplot as plt
 import mne
@@ -50,6 +51,8 @@ for file, raw, ax in zip(files, raws, axes):
     fs_real = int(name.split('_')[1][:2])
 
     raw = raw.copy()
+    raw.load_data()
+    raw.filter(l_freq=20, h_freq=40)
     y = raw.get_data()[62][-8*fs:]
 
     n = len(y)
@@ -70,7 +73,10 @@ plt.show()
 
 # %% ---- 2026-04-15 ------------------------
 # Pending
+x = raw.times[-8*fs:]
+px.line(x=x, y=y)
 
+# %%
 
 # %% ---- 2026-04-15 ------------------------
 # Pending
