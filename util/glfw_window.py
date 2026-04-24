@@ -199,6 +199,7 @@ class GLFWWindow(CursorPosition):
 
         # Main rendering loop
         while not glfw.window_should_close(window):
+            _t_start = glfw.get_time()
             # 设置透明背景
             glClearColor(0.0, 0.0, 0.0, 0.0)
             glClear(GL_COLOR_BUFFER_BIT)
@@ -212,11 +213,14 @@ class GLFWWindow(CursorPosition):
             # Just draw the buffer.
             glfw.swap_buffers(window)
             try:
+                _interval = glfw.get_time() - _t_start
                 glfw.poll_events()
-                self.fps.update()
+                self.fps.update(_interval)
             except Exception as err:
                 logger.exception(err)
                 raise err
+
+        self.fps.summary()
 
         glfw.terminate()
         logger.info('Rendering stops')

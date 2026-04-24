@@ -18,6 +18,7 @@ Functions:
 
 # %% ---- 2026-04-13 ------------------------
 # Requirements and constants
+import plotly.express as px
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
@@ -100,6 +101,11 @@ plt.show()
 
 # %% ---- 2026-04-13 ------------------------
 # Pending
+x, y = 100, 400
+t = np.linspace(0, 1/fs*(n-1), n)
+s = video_matrix[:, y, x]
+fig = px.line(x=t, y=s)
+fig.show()
 
 
 # %% ---- 2026-04-13 ------------------------

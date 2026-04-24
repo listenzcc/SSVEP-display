@@ -4,6 +4,7 @@ __pycache__
 # Runtime
 .vscode
 *.log
+fps-summary-*.json
 
 # pyinstaller
 *.spec

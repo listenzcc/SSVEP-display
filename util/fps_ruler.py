@@ -19,13 +19,18 @@ Functions:
 # %% ---- 2025-10-09 ------------------------
 # Requirements and constants
 import time
-from collections import deque
+import json
+from datetime import datetime
+from collections import deque, defaultdict
 
 # %% ---- 2025-10-09 ------------------------
 # Function and class
 
 
 class FPSRuler:
+    timestamps: deque
+    intervals: defaultdict
+
     def __init__(self, max_samples=100):
         """
         Initialize the frame rate counter.
@@ -34,12 +39,25 @@ class FPSRuler:
             max_samples (int): Maximum number of timestamps to store for calculating frame rate.
         """
         self.timestamps = deque(maxlen=max_samples)
+        self.intervals = defaultdict(int)
 
-    def update(self):
+    def update(self, interval=None):
         """
         Update the frame rate counter with the current timestamp.
+
+        :param interval: The time interval for the current frame (in milliseconds), used for categorizing frame rates.
         """
         self.timestamps.append(time.time())
+        if interval is not None:
+            self.intervals[int(interval*1e3)] += 1
+
+    def summary(self):
+        print(self.intervals)
+        json.dump(
+            self.intervals,
+            open(
+                f'summary-{datetime.strftime(datetime.now(), "%Y-%m-%d_%H-%M-%S")}.json', 'w'),
+            indent=4)
 
     def get_fps(self):
         """
